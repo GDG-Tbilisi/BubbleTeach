@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/backgroundlvl2"  >
+    android:background="@drawable/backgroundlvl2"
+    android:id="@+id/lay"  >
 
     <TextView
     android:layout_width="fill_parent"
@@ -19,9 +20,11 @@
     </Button>
 
        <Button
-           android:id="@+id/button1"
+           android:id="@+id/alphaButton"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="A" android:background="@drawable/burti"/>
+           android:text="A" android:background="@drawable/burti"
+           
+           />
 
 </LinearLayout>
