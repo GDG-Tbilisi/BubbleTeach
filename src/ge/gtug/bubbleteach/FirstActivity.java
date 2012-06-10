@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+
+import java.util.ArrayList;
 import java.util.Locale;
 
 import android.speech.RecognizerIntent;
@@ -29,12 +31,14 @@ public class FirstActivity extends Activity {
 	TextToSpeech ttx;
 	ImageButton btnBig;
 	ImageButton btnSmall;
+	ImageButton btnNext;
 	static final int check = 111;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.firstact);
 		btnBig = (ImageButton) findViewById(R.id.btnDidiOn);
 		btnSmall = (ImageButton) findViewById(R.id.btnPataraoff);
+		btnNext = (ImageButton)findViewById(R.id.button2);
 		ttx = new TextToSpeech(FirstActivity.this,
 				new TextToSpeech.OnInitListener() {
 
@@ -45,10 +49,7 @@ public class FirstActivity extends Activity {
 						}
 					}
 				});
-		Intent intent= new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-		intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something dude!");
-		startActivityForResult(intent, check);
+	
 		
 		String alphabet = "abcdefghijklmnopqrstuvwxyz";
 		final TableLayout  table = (TableLayout) findViewById(R.id.table);
@@ -107,6 +108,16 @@ public class FirstActivity extends Activity {
 			}
 			
 		});
+		btnNext.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				 Intent i = new Intent();
+   	    	  i.setClass(getApplicationContext(), SecondActivity.class);
+   	    	  startActivity(i);
+			}
+		});
 	}
 	
 	
@@ -133,7 +144,11 @@ public class FirstActivity extends Activity {
 						ttx.speak(buttonText, TextToSpeech.QUEUE_FLUSH, null);
 						Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 						vibe.vibrate(100);
-
+						
+						Intent intent= new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+						intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+						intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something dude!");
+						startActivityForResult(intent, check);
 					}
 				});
 
@@ -155,9 +170,7 @@ public class FirstActivity extends Activity {
 
 
 
-	public void nextActivity() {
-
-	}
+	
 
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -168,11 +181,13 @@ public class FirstActivity extends Activity {
 		AlertDialog alert = new AlertDialog.Builder(
 					FirstActivity.this).create();
 		if(requestCode == check && resultCode == RESULT_OK){
-			String results [] = data.getStringArrayExtra((RecognizerIntent.EXTRA_RESULTS));
-			for (int i = 0; i < results.length; i++) {
-				System.out.println(results[i].toString());
-			}
-			alert.setTitle("sgsg");
+			ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+			Object[] elements = results.toArray();
+			
+			
+			
+			
+			alert.setTitle("Result :  " + elements[0]);
 			alert.show();
 			//CharSequence text = results[0];
            /* String text = results[0];
