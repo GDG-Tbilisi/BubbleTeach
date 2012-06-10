@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -26,19 +25,20 @@ import android.view.ViewGroup;
 public class FirstActivity extends Activity {
 	String letterer;
 	Button but;
-	 boolean te = true;
-	 boolean te1 = true;
+	boolean te = true;
+	boolean te1 = true;
 	TextToSpeech ttx;
 	ImageButton btnBig;
 	ImageButton btnSmall;
 	ImageButton btnNext;
 	static final int check = 111;
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.firstact);
 		btnBig = (ImageButton) findViewById(R.id.btnDidiOn);
 		btnSmall = (ImageButton) findViewById(R.id.btnPataraoff);
-		btnNext = (ImageButton)findViewById(R.id.button2);
+		btnNext = (ImageButton) findViewById(R.id.button2);
 		ttx = new TextToSpeech(FirstActivity.this,
 				new TextToSpeech.OnInitListener() {
 
@@ -49,42 +49,39 @@ public class FirstActivity extends Activity {
 						}
 					}
 				});
-	
-		
-		String alphabet = "abcdefghijklmnopqrstuvwxyz";
-		final TableLayout  table = (TableLayout) findViewById(R.id.table);
 
-		createView(alphabet,table);
-		
-		
+		String alphabet = "abcdefghijklmnopqrstuvwxyz";
+		final TableLayout table = (TableLayout) findViewById(R.id.table);
+
+		createView(alphabet, table);
+
 		btnBig.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-			if (te) {
-				btnBig.setBackgroundResource(R.drawable.didioff);
-				btnSmall.setBackgroundResource(R.drawable.pataraon);
-				table.removeAllViews();
-				String alphabet = "abcdefghijklmnopqrstuvwxyz";
-				TableLayout table = (TableLayout) findViewById(R.id.table);
-				createView(alphabet,table);
-				te = false;
-			}else{
-				btnBig.setBackgroundResource(R.drawable.didion);
-				btnSmall.setBackgroundResource(R.drawable.pataraoff);
-				table.removeAllViews();
-				String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-				TableLayout table = (TableLayout) findViewById(R.id.table);
-				createView(alphabet,table);
-				te = true;
-			}
-			
-				
+				if (te) {
+					btnBig.setBackgroundResource(R.drawable.didioff);
+					btnSmall.setBackgroundResource(R.drawable.pataraon);
+					table.removeAllViews();
+					String alphabet = "abcdefghijklmnopqrstuvwxyz";
+					TableLayout table = (TableLayout) findViewById(R.id.table);
+					createView(alphabet, table);
+					te = false;
+				} else {
+					btnBig.setBackgroundResource(R.drawable.didion);
+					btnSmall.setBackgroundResource(R.drawable.pataraoff);
+					table.removeAllViews();
+					String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+					TableLayout table = (TableLayout) findViewById(R.id.table);
+					createView(alphabet, table);
+					te = true;
+				}
+
 			}
 		});
 		btnSmall.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -94,35 +91,32 @@ public class FirstActivity extends Activity {
 					table.removeAllViews();
 					String alphabet = "abcdefghijklmnopqrstuvwxyz";
 					TableLayout table = (TableLayout) findViewById(R.id.table);
-					createView(alphabet,table);
+					createView(alphabet, table);
 					te1 = false;
-				}else{
+				} else {
 					btnBig.setBackgroundResource(R.drawable.didion);
 					btnSmall.setBackgroundResource(R.drawable.pataraoff);
 					table.removeAllViews();
 					String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 					TableLayout table = (TableLayout) findViewById(R.id.table);
-					createView(alphabet,table);
+					createView(alphabet, table);
 					te1 = true;
 				}
 			}
-			
+
 		});
 		btnNext.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				 Intent i = new Intent();
-   	    	  i.setClass(getApplicationContext(), SecondActivity.class);
-   	    	  startActivity(i);
+				Intent i = new Intent();
+				i.setClass(getApplicationContext(), SecondActivity.class);
+				startActivity(i);
 			}
 		});
 	}
-	
-	
 
-	
 	private void createView(String alphabet, TableLayout table) {
 		// TODO Auto-generated method stub
 		int pos = 0;
@@ -145,10 +139,13 @@ public class FirstActivity extends Activity {
 						ttx.speak(buttonText, TextToSpeech.QUEUE_FLUSH, null);
 						Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 						vibe.vibrate(100);
-						
-						Intent intent= new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-						intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-						intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something dude!");
+
+						Intent intent = new Intent(
+								RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+						intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+								RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+						intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+								"Say something dude!");
 						startActivityForResult(intent, check);
 					}
 				});
@@ -164,50 +161,32 @@ public class FirstActivity extends Activity {
 			table.addView(row);
 
 		}
-	
-		
+
 	}
 
-
-
-
-	
-
 	@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	// TODO Auto-generated method stub
-		//Context context = getApplicationContext();
-		
-	//	int duration = Toast.LENGTH_LONG;
-		AlertDialog alert = new AlertDialog.Builder(
-					FirstActivity.this).create();
-		if(requestCode == check && resultCode == RESULT_OK){
-			ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		AlertDialog alert = new AlertDialog.Builder(FirstActivity.this)
+				.create();
+		if (requestCode == check && resultCode == RESULT_OK) {
+			ArrayList<String> results = data
+					.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 			Object[] elements = results.toArray();
-			
-			
-			
+
 			String letter = (String) elements[0];
-			
-			if (letter == letterer) {
-				alert.setTitle("Correct . sgsg " + letter );
-			}else{ 
-				alert.setTitle("sgsg . Try Again  " + letter);
+
+			if (letter.equals(letterer)) {
+				alert.setTitle("Correct ! ");
+			} else {
+				alert.setTitle("Try Again  ! ");
 			}
 			alert.show();
-			//CharSequence text = results[0];
-           /* String text = results[0];
-			Toast toast = Toast.makeText(context, text, duration);
-			toast.show();*/
-			
-		}
-		else {
-			/*String text = "fail";
-			Toast toast = Toast.makeText(context, text, duration);
-			toast.show();*/
+		
+		} else {
 			alert.setTitle("Try Again ");
 			alert.show();
 		}
-    	super.onActivityResult(requestCode, resultCode, data);
-    }
+		super.onActivityResult(requestCode, resultCode, data);
+	}
 }
