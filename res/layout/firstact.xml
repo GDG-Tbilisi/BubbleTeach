@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/lay"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -12,18 +10,19 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/table"
         android:layout_width="match_parent"
-        android:layout_height="428dp" >
-        
+        android:layout_height="428dp"
+        android:layout_weight="2.17" >
     </TableLayout>
-
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="52dp" >
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="45dp"
-            android:layout_height="55dp"
+        android:layout_height="51dp" >
+
+        <ImageButton
+            android:id="@+id/btnDidiOn"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
             android:background="@drawable/didion" />
 
         <TextView
@@ -32,28 +31,27 @@
             android:layout_height="wrap_content"
             android:text="   " />
 
-         <Button
-            android:id="@+id/button1"
+        <ImageButton
+            android:id="@+id/btnPataraoff"
             android:layout_width="25dp"
             android:layout_height="35dp"
-            android:background="@drawable/didioff" />
-
-         <LinearLayout
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:orientation="vertical" 
-             android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:background="@drawable/pataraoff" />
 
-             <Button
-                 android:id="@+id/button2"
-                 android:layout_width="75dp"
-                 android:layout_height="55dp"
-            
-                 android:layout_gravity="right"
-                 android:background="@drawable/shemdegi"  />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical" >
 
-         </LinearLayout>
-
+            <ImageButton
+                android:id="@+id/button2"
+                android:layout_width="75dp"
+                android:layout_height="55dp"
+                android:layout_gravity="right"
+                android:background="@drawable/shemdegi"
+                android:onClick="nextActivity" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
