@@ -59,6 +59,9 @@ public class FirstActivity extends Activity {
 								FirstActivity.this).create();
 						alertDialog.setTitle(buttonText);
 						ttx.speak(buttonText, TextToSpeech.QUEUE_FLUSH, null);
+						Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE) ;
+						vibe.vibrate(100);
+						
 
 					}
 				});
