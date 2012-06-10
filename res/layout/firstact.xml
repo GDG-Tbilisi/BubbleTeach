@@ -1,30 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/lay"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/backgroundlvl2"
-    android:id="@+id/lay"  >
+    android:orientation="vertical" >
 
-    <TextView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:textColor="#000000"
-    android:text="This is Activity 2" />
+    
+    <Button
+        android:id="@+id/alphaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/burti"
+        android:text="A" />
+    
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        >
 
-       <Button android:text="Previous"
-        android:id="@+id/Button02"
-        android:layout_width="250px"
-            android:textSize="18px"
-        android:layout_height="55px">
-    </Button>
+        <TableRow
+            android:id="@+id/firstrow">
 
-       <Button
-           android:id="@+id/alphaButton"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="A" android:background="@drawable/burti"
-           
-           />
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="test1" />
+            
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="test2" />
+            
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="test3" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/sectrow">
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="test1" />
+            
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="test2" />
+            
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="test3" />
+            
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="test3" />
+        </TableRow>
+
+        <TableRow
+            
+            android:id="@+id/fourthtrow">
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="test1" />
+            
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="test2" />
+            
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="test3" />
+        </TableRow>
+    </TableLayout>
+
 
 </LinearLayout>
