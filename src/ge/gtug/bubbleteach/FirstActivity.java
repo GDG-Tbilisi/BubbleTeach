@@ -3,6 +3,7 @@ package ge.gtug.bubbleteach;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.TableRow;
 
 import java.util.Locale;
 
+import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
@@ -27,7 +29,7 @@ public class FirstActivity extends Activity {
 	TextToSpeech ttx;
 	ImageButton btnBig;
 	ImageButton btnSmall;
-	
+	static final int check = 111;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.firstact);
@@ -43,7 +45,11 @@ public class FirstActivity extends Activity {
 						}
 					}
 				});
-
+		Intent intent= new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+		intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something dude!");
+		startActivityForResult(intent, check);
+		
 		String alphabet = "abcdefghijklmnopqrstuvwxyz";
 		final TableLayout  table = (TableLayout) findViewById(R.id.table);
 
@@ -152,4 +158,35 @@ public class FirstActivity extends Activity {
 	public void nextActivity() {
 
 	}
+
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	// TODO Auto-generated method stub
+		//Context context = getApplicationContext();
+		
+	//	int duration = Toast.LENGTH_LONG;
+		AlertDialog alert = new AlertDialog.Builder(
+					FirstActivity.this).create();
+		if(requestCode == check && resultCode == RESULT_OK){
+			String results [] = data.getStringArrayExtra((RecognizerIntent.EXTRA_RESULTS));
+			for (int i = 0; i < results.length; i++) {
+				System.out.println(results[i].toString());
+			}
+			alert.setTitle("sgsg");
+			alert.show();
+			//CharSequence text = results[0];
+           /* String text = results[0];
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();*/
+			
+		}
+		else {
+			/*String text = "fail";
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();*/
+			alert.setTitle("failed");
+			alert.show();
+		}
+    	super.onActivityResult(requestCode, resultCode, data);
+    }
 }
