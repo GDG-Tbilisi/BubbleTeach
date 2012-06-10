@@ -58,10 +58,18 @@ public class FirstActivity extends Activity {
 			if (te) {
 				btnBig.setBackgroundResource(R.drawable.didioff);
 				btnSmall.setBackgroundResource(R.drawable.pataraon);
+				table.removeAllViews();
+				String alphabet = "abcdefghijklmnopqrstuvwxyz";
+				TableLayout table = (TableLayout) findViewById(R.id.table);
+				createView(alphabet,table);
 				te = false;
 			}else{
 				btnBig.setBackgroundResource(R.drawable.didion);
 				btnSmall.setBackgroundResource(R.drawable.pataraoff);
+				table.removeAllViews();
+				String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+				TableLayout table = (TableLayout) findViewById(R.id.table);
+				createView(alphabet,table);
 				te = true;
 			}
 			
@@ -90,9 +98,6 @@ public class FirstActivity extends Activity {
 					createView(alphabet,table);
 					te1 = true;
 				}
-				
-
-				
 			}
 			
 		});
