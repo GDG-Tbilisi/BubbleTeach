@@ -22,7 +22,7 @@ public class BubbleTeachActivity extends Activity {
     	switch(evAct){
     	      case MotionEvent.ACTION_DOWN:
     	    	  Intent i = new Intent();
-    	    	  i.setClass(getApplicationContext(), FirstTour.class);
+    	    	  i.setClass(getApplicationContext(), FirstActivity.class);
     	    	  startActivity(i);
     	    	  
     	
