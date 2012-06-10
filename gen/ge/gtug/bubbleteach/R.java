@@ -18,16 +18,19 @@ public final class R {
         public static final int didion=0x7f020004;
         public static final int firstbackground=0x7f020005;
         public static final int ic_launcher=0x7f020006;
-        public static final int shemdegi=0x7f020007;
+        public static final int pataraoff=0x7f020007;
+        public static final int pataraon=0x7f020008;
+        public static final int shemdegi=0x7f020009;
     }
     public static final class id {
-        public static final int button1=0x7f050002;
-        public static final int button2=0x7f050004;
-        public static final int floatingimage=0x7f050008;
+        public static final int btnDidiOn=0x7f050002;
+        public static final int btnPataraoff=0x7f050004;
+        public static final int button2=0x7f050005;
+        public static final int floatingimage=0x7f050009;
         public static final int lay=0x7f050000;
-        public static final int layout=0x7f050005;
-        public static final int sec=0x7f050007;
-        public static final int starttranslate=0x7f050006;
+        public static final int layout=0x7f050006;
+        public static final int sec=0x7f050008;
+        public static final int starttranslate=0x7f050007;
         public static final int table=0x7f050001;
         public static final int textView1=0x7f050003;
     }

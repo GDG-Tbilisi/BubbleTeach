@@ -6,6 +6,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -20,13 +22,17 @@ import android.view.ViewGroup;
 public class FirstActivity extends Activity {
 
 	Button but;
-
+	 boolean te = true;
+	 boolean te1 = true;
 	TextToSpeech ttx;
-
+	ImageButton btnBig;
+	ImageButton btnSmall;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.firstact);
-
+		btnBig = (ImageButton) findViewById(R.id.btnDidiOn);
+		btnSmall = (ImageButton) findViewById(R.id.btnPataraoff);
 		ttx = new TextToSpeech(FirstActivity.this,
 				new TextToSpeech.OnInitListener() {
 
@@ -38,10 +44,70 @@ public class FirstActivity extends Activity {
 					}
 				});
 
+		String alphabet = "abcdefghijklmnopqrstuvwxyz";
+		final TableLayout  table = (TableLayout) findViewById(R.id.table);
 
-		String alphabet = "abcdefghijqlmnopqrstuvwxyz";
-		TableLayout table = (TableLayout) findViewById(R.id.table);
+		createView(alphabet,table);
+		
+		
+		btnBig.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			if (te) {
+				btnBig.setBackgroundResource(R.drawable.didioff);
+				btnSmall.setBackgroundResource(R.drawable.pataraon);
+				table.removeAllViews();
+				String alphabet = "abcdefghijklmnopqrstuvwxyz";
+				TableLayout table = (TableLayout) findViewById(R.id.table);
+				createView(alphabet,table);
+				te = false;
+			}else{
+				btnBig.setBackgroundResource(R.drawable.didion);
+				btnSmall.setBackgroundResource(R.drawable.pataraoff);
+				table.removeAllViews();
+				String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+				TableLayout table = (TableLayout) findViewById(R.id.table);
+				createView(alphabet,table);
+				te = true;
+			}
+			
+				
+			}
+		});
+		btnSmall.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (te1) {
+					btnBig.setBackgroundResource(R.drawable.didioff);
+					btnSmall.setBackgroundResource(R.drawable.pataraon);
+					table.removeAllViews();
+					String alphabet = "abcdefghijklmnopqrstuvwxyz";
+					TableLayout table = (TableLayout) findViewById(R.id.table);
+					createView(alphabet,table);
+					te1 = false;
+				}else{
+					btnBig.setBackgroundResource(R.drawable.didion);
+					btnSmall.setBackgroundResource(R.drawable.pataraoff);
+					table.removeAllViews();
+					String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+					TableLayout table = (TableLayout) findViewById(R.id.table);
+					createView(alphabet,table);
+					te1 = true;
+				}
+			}
+			
+		});
+	}
+	
+	
 
+	
+	private void createView(String alphabet, TableLayout table) {
+		// TODO Auto-generated method stub
 		int pos = 0;
 		for (int i = 0; i < 7; i++) {
 			TableRow row = new TableRow(this);
@@ -59,9 +125,8 @@ public class FirstActivity extends Activity {
 								FirstActivity.this).create();
 						alertDialog.setTitle(buttonText);
 						ttx.speak(buttonText, TextToSpeech.QUEUE_FLUSH, null);
-						Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE) ;
+						Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 						vibe.vibrate(100);
-						
 
 					}
 				});
@@ -77,6 +142,14 @@ public class FirstActivity extends Activity {
 			table.addView(row);
 
 		}
+	
+		
+	}
+
+
+
+
+	public void nextActivity() {
 
 	}
 }
