@@ -42,15 +42,7 @@ public class FirstActivity extends Activity {
 				but.setWidth(70);
 				but.setBackgroundResource(R.drawable.burti);
 				row.addView(but);
-				
-				
-				
-				
-				
-
-				
-
-			}
+						}
 			table.addView(row);
 			
 			
