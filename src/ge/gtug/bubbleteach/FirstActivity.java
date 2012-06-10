@@ -22,7 +22,7 @@ public class FirstActivity extends Activity {
         setContentView(R.layout.firstact);
         
 
-        Button next = (Button) findViewById(R.id.Button02);
+/*        Button next = (Button) findViewById(R.id.Button02);
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -30,7 +30,7 @@ public class FirstActivity extends Activity {
                 finish();
             }
 
-        });
+        });*/
     
         
         LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
