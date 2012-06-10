@@ -24,7 +24,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 public class FirstActivity extends Activity {
-
+	String letterer;
 	Button but;
 	 boolean te = true;
 	 boolean te1 = true;
@@ -138,6 +138,7 @@ public class FirstActivity extends Activity {
 					public void onClick(View v) {
 						Button b = (Button) v;
 						String buttonText = b.getText().toString();
+						letterer = buttonText;
 						AlertDialog alertDialog = new AlertDialog.Builder(
 								FirstActivity.this).create();
 						alertDialog.setTitle(buttonText);
@@ -186,8 +187,13 @@ public class FirstActivity extends Activity {
 			
 			
 			
+			String letter = (String) elements[0];
 			
-			alert.setTitle("Result :  " + elements[0]);
+			if (letter == letterer) {
+				alert.setTitle("Correct . sgsg " + letter );
+			}else{ 
+				alert.setTitle("sgsg . Try Again  " + letter);
+			}
 			alert.show();
 			//CharSequence text = results[0];
            /* String text = results[0];
@@ -199,7 +205,7 @@ public class FirstActivity extends Activity {
 			/*String text = "fail";
 			Toast toast = Toast.makeText(context, text, duration);
 			toast.show();*/
-			alert.setTitle("failed");
+			alert.setTitle("Try Again ");
 			alert.show();
 		}
     	super.onActivityResult(requestCode, resultCode, data);
