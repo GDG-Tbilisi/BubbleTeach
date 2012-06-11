@@ -21,13 +21,26 @@ public class FirstActivity extends Activity {
 
 	Button but;
 
+	TextToSpeech ttx;
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.firstact);
 
+		ttx = new TextToSpeech(FirstActivity.this,
+				new TextToSpeech.OnInitListener() {
+
+					public void onInit(int status) {
+						// TODO Auto-generated method stub
+						if (status != TextToSpeech.ERROR) {
+							ttx.setLanguage(Locale.US);
+						}
+					}
+				});
+	
+
 		String alphabet = "abcdefghijqlmnopqrstuvwxyz";
-		TableLayout table = (TableLayout)findViewById(R.id.table);
-		
+		TableLayout table = (TableLayout) findViewById(R.id.table);
 
 		int pos = 0;
 		for (int i = 0; i < 7; i++) {
@@ -38,16 +51,18 @@ public class FirstActivity extends Activity {
 				}
 				but = new Button(this);
 				but.setClickable(true);
-				but.setOnClickListener( new View.OnClickListener() {
-		             public void onClick(View v) {
-		            	 Button b = (Button)v;
-		            	    String buttonText = b.getText().toString();
-		            	    AlertDialog alertDialog = new AlertDialog.Builder(FirstActivity.this).create();
-		            	    alertDialog.setTitle(buttonText);
-		            	    alertDialog.show();
-		            	
-		             }
-		         });
+				but.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+						Button b = (Button) v;
+						String buttonText = b.getText().toString();
+						AlertDialog alertDialog = new AlertDialog.Builder(
+								FirstActivity.this).create();
+						alertDialog.setTitle(buttonText);
+						alertDialog.show();
+						ttx.speak(buttonText, TextToSpeech.QUEUE_FLUSH, null);
+
+					}
+				});
 
 				but.setText(Character.toString(alphabet.charAt(pos++)));
 				but.setHeight(80);
@@ -55,19 +70,10 @@ public class FirstActivity extends Activity {
 				but.setBackgroundResource(R.drawable.burti);
 				but.setId(pos);
 				row.addView(but);
-				
-				
-				
-				
-				
-				
-
-				
 
 			}
 			table.addView(row);
-			
-			
+
 		}
 
 	}
