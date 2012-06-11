@@ -1,6 +1,7 @@
 package ge.gtug.bubbleteach;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -36,12 +37,25 @@ public class FirstActivity extends Activity {
 					break;
 				}
 				but = new Button(this);
+				but.setClickable(true);
+				but.setOnClickListener( new View.OnClickListener() {
+		             public void onClick(View v) {
+		            	 Button b = (Button)v;
+		            	    String buttonText = b.getText().toString();
+		            	    AlertDialog alertDialog = new AlertDialog.Builder(FirstActivity.this).create();
+		            	    alertDialog.setTitle(buttonText);
+		            	    alertDialog.show();
+		            	
+		             }
+		         });
 
 				but.setText(Character.toString(alphabet.charAt(pos++)));
 				but.setHeight(80);
 				but.setWidth(70);
 				but.setBackgroundResource(R.drawable.burti);
+				but.setId(pos);
 				row.addView(but);
+				
 				
 				
 				
