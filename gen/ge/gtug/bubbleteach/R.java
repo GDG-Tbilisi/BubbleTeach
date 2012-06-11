@@ -19,6 +19,7 @@ public final class R {
     }
     public static final class id {
         public static final int lay=0x7f050000;
+        public static final int table=0x7f050001;
     }
     public static final class layout {
         public static final int firstact=0x7f030000;

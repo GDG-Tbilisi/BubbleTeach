@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:id="@+id/lay"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/backgroundlvl2"
     android:orientation="vertical" >
 
-</TableLayout>
+
+
+    
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        >
+
+      
+
+        
+    </TableLayout>
+
+
+</LinearLayout>
